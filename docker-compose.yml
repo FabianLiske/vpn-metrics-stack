@@ -22,23 +22,6 @@ services:
     network_mode: host
     cap_add:
       - NET_ADMIN
-    user: "0:0" 
+    user: "0:0"
     command: ["-i","wg0","-d","true"]
 
-  telegraf:
-    env_file: [.env]
-    container_name: telegraf-vpn
-    image: telegraf
-    restart: unless-stopped
-    network_mode: host
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
-    user: "0:0"
-    security_opt:
-      - seccomp=unconfined
-    environment:
-      - INFLUXDB_NETWORK=${INFLUXDB_NETWORK}
-    volumes:
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-      - /etc/wireguard:/etc/wireguard:ro
