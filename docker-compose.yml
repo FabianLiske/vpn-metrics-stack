@@ -1,7 +1,7 @@
 services:
   docker-proxy:
     container_name: "docker-proxy"
-    image: "tecnativa/docker-socket-proxy:latest":
+    image: tecnativa/docker-socket-proxy:latest
     restart: unless-stopped
     ports:
       - "2375:2375"
